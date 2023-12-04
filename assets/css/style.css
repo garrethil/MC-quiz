@@ -1,0 +1,42 @@
+@font-face {
+    font-family: main-font;
+    src: url(./slkscre.ttf);
+}
+
+
+
+*{
+    font-family: main-font;
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(67, 66, 66);
+    font-size: 30px;
+    padding: 20px;
+    margin: 15px 25px;
+
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+#mainCard {
+    padding: 30px;
+    margin: 15px;
+    background-color: lightblue;
+    color: darkblue;
+    border: 2px solid darkblue;
+    border-radius: 6px;
+    font-size: 35px;
+}
+
+#mainCard:hover {
+    cursor: grab;
+    color: lightblue;
+    background-color: darkblue;
+    border-color: lightblue;
+}
