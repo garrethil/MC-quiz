@@ -1,28 +1,91 @@
 const mainDiv = document.querySelector('#mainCard');
 const header = document.querySelector('#mainText');
+const begin = document.querySelector('#startButton');
+const choice1 = document.querySelector('#opt1');
+const choice2 = document.querySelector('#opt2');
+const choice3 = document.querySelector('#opt3');
+const choice4 = document.querySelector('#opt4');
 
 
+
+let questionBank = [{
+    problem: 'what couldquestion goes here ___1____',
+    ans1: 'answer1',
+    ans2: 'answer2',
+    ans3: 'answer3',
+    ans4: 'answer4',
+    correct:
+}, {
+    problem: 'question goes here ____2___',
+    ans1: 'answer5',
+    ans2: 'answer6',
+    ans3: 'answer7',
+    ans4: 'answer8',
+    correct:
+}, {
+    problem: 'question goes here __3_____',
+    ans1: 'answer9',
+    ans2: 'answer10',
+    ans3: 'answer11',
+    ans4: 'answer12',
+    correct:
+}, {
+    problem: 'question goes here ___4____',
+    ans1: 'answer13',
+    ans2: 'answer14',
+    ans3: 'answer15',
+    ans4: 'answer16',
+    correct:
+}, {
+    problem: 'question goes here ___5____',
+    ans1: 'answer17',
+    ans2: 'answer18',
+    ans3: 'answer19',
+    ans4: 'answer20',
+    correct:  
+}];
+
+var score = 0;
+var currentIndex = 0
 
 var init = function(){
-    var startText = document.createElement('h1');
-    startText.textContent = 'Click to Begin Code Quiz';
-    mainDiv.appendChild(startText);
-
+    begin.textContent = 'Click to Begin Code Quiz';
+    begin.addEventListener('click', startGame);
 };
 
+var displayQuestion = function(){
+    var currentQuestion = questionBank[currentIndex];
+    var questionElement = document.createElement('h1');
+    questionElement.textContent = currentQuestion.problem;
+    mainDiv.appendChild(questionElement);
+
+    var option1 = document.createElement('button');
+    option1.textContent = currentQuestion.ans1;
+    choice1.appendChild(option1);
+
+    var option2 = document.createElement('button')
+    option2.textContent = currentQuestion.ans2;
+    choice2.appendChild(option2);
+
+    var option3 = document.createElement('button')
+    option3.textContent = currentQuestion.ans3;
+    choice3.appendChild(option3);
+
+    var option4 = document.createElement('button')
+    option4.textContent = currentQuestion.ans4;
+    choice4.appendChild(option4);
+
+}
+
+var startGame = function(){
+    begin.style.display = 'none';
+    displayQuestion();
+    };
 
 
+var nextQuestion = function(){
 
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

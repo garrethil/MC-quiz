@@ -3,7 +3,11 @@
     src: url(./slkscre.ttf);
 }
 
-
+:root {
+    --header-text:rgb(67, 66, 66);
+    --main-text: darkblue;
+    --background: lightblue;
+}
 
 *{
     font-family: main-font;
@@ -12,7 +16,7 @@
 #top {
     display: flex;
     justify-content: space-between;
-    color: rgb(67, 66, 66);
+    color: var(--header-text);
     font-size: 30px;
     padding: 20px;
     margin: 15px 25px;
@@ -22,21 +26,36 @@
 main {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#mainCard {
+#mainCard button {
     padding: 30px;
     margin: 15px;
     background-color: lightblue;
-    color: darkblue;
-    border: 2px solid darkblue;
+    color: var(--main-text);
+    border: 2px solid var(--main-text);
     border-radius: 6px;
     font-size: 35px;
 }
 
-#mainCard:hover {
+#mainCard button:hover {
     cursor: grab;
-    color: lightblue;
-    background-color: darkblue;
-    border-color: lightblue;
+    color: var(--background);
+    background-color: var(--main-text);
+    border-color: var(--background);
+}
+
+#mainCard h1 {
+    font-size: 25px;
+    padding: 30px 20px;
+}
+
+#answers li button {
+    padding: 10px;
+}
+
+#mainCard {
+    display: flex;
 }
