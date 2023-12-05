@@ -52,6 +52,12 @@ main {
     padding: 30px 20px;
 }
 
+#mainCard h2 {
+    font-size: 26px;
+    padding: 40px;
+    border: 4px ridge var(--header-text);
+}
+
 #answers li button {
     padding: 10px;
 }

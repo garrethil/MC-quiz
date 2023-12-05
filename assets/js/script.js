@@ -58,12 +58,18 @@ var init = function(){
     timer.textContent = 60;
 };
 
+var startGame = function(){
+    begin.style.display = 'none';
+    setTime();
+    displayQuestion();
+    };
+
 var setTime = function(){
-    var timeInterval = setInterval(function() {
+    const timeInterval = setInterval(function() {
         timeEl--;
         timer.textContent = timeEl;
 
-        if(timeEl ===  0){
+        if(timeEl === 0 || currentIndex === questionBank.length){
             clearInterval(timeInterval);
 
             gameOver();
@@ -73,6 +79,7 @@ var setTime = function(){
 }
 
 var displayQuestion = function(){
+
     var currentQuestion = questionBank[currentIndex];
     mainDiv.innerHTML = '';
     choice1.innerHTML = '';
@@ -141,6 +148,21 @@ var displayQuestion = function(){
             wrong();
         }
     });
+
+}
+
+var endScreen = function() {
+    mainDiv.innerHTML = '';
+    choice1.innerHTML = '';
+    choice2.innerHTML = '';
+    choice3.innerHTML = '';
+    choice4.innerHTML = '';
+    result.innerHTML = '';
+    console.log(score);
+    var finalScore = document.createElement('h2');
+    finalScore.textContent = 'Score: ' + score;
+    mainDiv.appendChild(finalScore);
+    clearInterval(timeInterval);
 }
 
 var correct = function(){
@@ -149,7 +171,11 @@ var correct = function(){
     cheer.textContent = 'Correct!';
     result.appendChild(cheer);
     currentIndex++;
-    displayQuestion();
+    if (currentIndex < questionBank.length){
+        displayQuestion(); 
+    } else {
+        endScreen();
+    };
 };
 
 var wrong = function(){
@@ -159,18 +185,12 @@ var wrong = function(){
     result.appendChild(incorrect);
     currentIndex++;
     timeEl -= 5;
-    displayQuestion();
+    if (currentIndex < questionBank.length){
+        displayQuestion(); 
+    } else {
+        endScreen();
+    };
 };
 
-var startGame = function(){
-    begin.style.display = 'none';
-    setTime();
-    displayQuestion();
-    };
-
-
-var nextQuestion = function(){
-
-}
 
 init();
