@@ -7,6 +7,7 @@ const choice2 = document.querySelector('#opt2');
 const choice3 = document.querySelector('#opt3');
 const choice4 = document.querySelector('#opt4');
 const result = document.querySelector('#result');
+const timer = document.querySelector('#time');
 
 
 let questionBank = [{
@@ -47,14 +48,29 @@ let questionBank = [{
 }];
 
 
-var time = 0;
+var timeEl = 60;
 var score = 0;
 var currentIndex = 0;
 
 var init = function(){
     begin.textContent = 'Click to Begin Code Quiz';
     begin.addEventListener('click', startGame);
+    timer.textContent = 60;
 };
+
+var setTime = function(){
+    var timeInterval = setInterval(function() {
+        timeEl--;
+        timer.textContent = timeEl;
+
+        if(timeEl ===  0){
+            clearInterval(timeInterval);
+
+            gameOver();
+        }
+        
+    }, 1000);
+}
 
 var displayQuestion = function(){
     var currentQuestion = questionBank[currentIndex];
@@ -80,7 +96,6 @@ var displayQuestion = function(){
             score++;
             correct();
         } else {
-            time - 5;
             wrong();
         }
     });
@@ -95,7 +110,6 @@ var displayQuestion = function(){
             score++;
             correct();
         } else {
-            time - 5;
             wrong();
         }
     });
@@ -110,7 +124,6 @@ var displayQuestion = function(){
             score++;
             correct();
         } else {
-            time - 5;
             wrong();
         }
     });
@@ -125,7 +138,6 @@ var displayQuestion = function(){
             score++;
             correct();
         } else {
-            time - 5;
             wrong();
         }
     });
@@ -146,11 +158,13 @@ var wrong = function(){
     incorrect.textContent = 'Wrong Answer';
     result.appendChild(incorrect);
     currentIndex++;
+    timeEl -= 5;
     displayQuestion();
 };
 
 var startGame = function(){
     begin.style.display = 'none';
+    setTime();
     displayQuestion();
     };
 
