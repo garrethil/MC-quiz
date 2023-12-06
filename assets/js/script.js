@@ -8,6 +8,7 @@ const choice3 = document.querySelector('#opt3');
 const choice4 = document.querySelector('#opt4');
 const result = document.querySelector('#result');
 const timer = document.querySelector('#time');
+const submit = document.querySelector('#submit');
 
 
 let questionBank = [{
@@ -48,14 +49,14 @@ let questionBank = [{
 }];
 
 
-var timeEl = 60;
+var timeEl = 30;
 var score = 0;
 var currentIndex = 0;
 
 var init = function(){
     begin.textContent = 'Click to Begin Code Quiz';
     begin.addEventListener('click', startGame);
-    timer.textContent = 60;
+    timer.textContent = 30;
 };
 
 var startGame = function(){
@@ -158,15 +159,59 @@ var endScreen = function() {
     choice3.innerHTML = '';
     choice4.innerHTML = '';
     result.innerHTML = '';
-    console.log(score);
     var finalScore = document.createElement('h2');
     finalScore.textContent = 'Score: ' + score;
     mainDiv.appendChild(finalScore);
-    clearInterval(timeInterval);
+    
+    var inputText = document.createElement('h3');
+    inputText.textContent = "Initials:";
+    result.appendChild(inputText);
+
+    var initialInput = document.createElement('input');
+    result.appendChild(initialInput);
+
+    var submitButtom = document.createElement('button');
+    submitButtom.textContent = "Save Score";
+    submit.appendChild(submitButtom);
+    submit.addEventListener('click', scoreBoard);
 }
+
+var scoreBoard = function () {
+    const user = initialInput.value;
+    const finalScore = score.value;
+    localStorage.setItem('user', user);
+    localStorage.setItem('score', finalScore);
+    result.innerHTML = '';
+    submit.innerHTML = '';
+    var scoreHeader = document.createElement('h3');
+    scoreHeader.textContent = 'HighScores';
+    result.appendChild(scoreHeader);
+    var savedUser = localStorage.getItem('user');
+    var savedScore = localStorage.getItem('score');
+    
+    var highScores = document.createElement('p');
+    highScores.textContent = savedUser + ' ' + savedScore;
+    result.appendChild(highScores);
+
+
+}
+
 
 var correct = function(){
     result.innerHTML = '';
+    
+    var resultTime = function(){
+        const timeInterval = setInterval(function() {
+
+    
+            if(timeEl === 0 || currentIndex === questionBank.length){
+                clearInterval(resultTime);
+    
+                gameOver();
+            }
+            
+        }, 1000);
+    }
     var cheer = document.createElement('h2');
     cheer.textContent = 'Correct!';
     result.appendChild(cheer);
