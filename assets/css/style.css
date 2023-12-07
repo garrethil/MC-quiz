@@ -4,9 +4,9 @@
 }
 
 :root {
-    --header-text:rgb(67, 66, 66);
     --main-text: darkblue;
     --background: lightblue;
+    --border: 3px solid darkblue;
 }
 
 *{
@@ -16,25 +16,31 @@
 #top {
     display: flex;
     justify-content: center;
-    color: var(--header-text);
+    color: var(--main-text);
     font-size: 34px;
     padding: 20px;
     margin: 15px 25px;
+    text-decoration: underline;
 
 }
 
-#info {
+#clock {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 20px 40px;
-    border: 3px solid black;
+    border-bottom: var(--border);
     width: 70%;
 }
 
-#info h1 {
-    padding: 15px;
-    margin: 20px;
+#clock h1 {
+    font-size: 28px;
+    color: var(--main-text);
+    padding: 10px;
+    background-color: var(--background);
+    border-radius: 6px;
+    border: var(--border);
 }
+
 
 main {
     display: flex;
@@ -50,7 +56,7 @@ main {
     color: var(--main-text);
     border: 2px solid var(--main-text);
     border-radius: 6px;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 #mainCard button:hover {
@@ -66,13 +72,18 @@ main {
 }
 
 #mainCard h2 {
-    font-size: 26px;
-    padding: 40px;
+    font-size: 22px;
+    padding: 16px;
     border: 4px ridge var(--header-text);
 }
 
-#answers li button {
+.option button {
     padding: 10px;
+    margin: 10px;
+    background-color: var(--background);
+    color: var(--main-text);
+    border: var(--border);
+    cursor: grab;
 }
 
 #mainCard {
@@ -82,11 +93,23 @@ main {
 
 #result input {
     padding: 10px;
-    margin: 20px;
+    margin: 5px;
+}
+#result button, #submit button {
+    padding: 12px;
+    margin: 15px;
+    background-color: var(--background);
 }
 
 #result h3 {
     margin: 15px;
+    font-size: 20px;
+}
+
+#result h2 {
+    margin: 15px;
+    padding: 10px;
+    border-top: var(--border);
 }
 
 #submit {

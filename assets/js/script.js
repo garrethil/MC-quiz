@@ -9,56 +9,56 @@ const choice4 = document.querySelector('#opt4');
 const result = document.querySelector('#result');
 const timer = document.querySelector('#time');
 const submit = document.querySelector('#submit');
-const scoresButton = document.querySelector('#pastScores')
+const scoreBoard = document.querySelector('#scoreBoard');
 
 var savedScores = [];
 
 let questionBank = [{
-    problem: 'what couldquestion goes here ___1____',
-    ans1: 'answer1',
-    ans2: 'answer2',
-    ans3: 'answer3',
-    ans4: 'answer4',
-    correct:'answer1'
+    problem: 'What method can you use to count at a stated interval?',
+    ans1: '.setTimer()',
+    ans2: '.setInt',
+    ans3: '.setClock',
+    ans4: '.setInterval',
+    correct:'.setInterval'
 }, {
-    problem: 'question goes here ____2___',
-    ans1: 'answer5',
-    ans2: 'answer6',
-    ans3: 'answer7',
-    ans4: 'answer8',
-    correct:'answer6'
+    problem: 'What data type allows us to store a collection of key-value pairs?',
+    ans1: 'Array',
+    ans2: 'Object',
+    ans3: 'Table',
+    ans4: 'Function',
+    correct:'Object'
 }, {
-    problem: 'question goes here __3_____',
-    ans1: 'answer9',
-    ans2: 'answer10',
-    ans3: 'answer11',
-    ans4: 'answer12',
-    correct:'answer11'
+    problem: 'What conversion method allows us to convert an object to a string?',
+    ans1: 'JSON',
+    ans2: 'JQuery',
+    ans3: 'BootStrap',
+    ans4: 'ConvertIt',
+    correct:'JSON'
 }, {
-    problem: 'question goes here ___4____',
-    ans1: 'answer13',
-    ans2: 'answer14',
-    ans3: 'answer15',
-    ans4: 'answer16',
-    correct:'answer16'
+    problem: 'In an object the correct separator between key-value Pairs is?',
+    ans1: '"."',
+    ans2: '","',
+    ans3: '"|"',
+    ans4: '"/"',
+    correct:'","'
 }, {
-    problem: 'question goes here ___5____',
-    ans1: 'answer17',
-    ans2: 'answer18',
-    ans3: 'answer19',
-    ans4: 'answer20',
-    correct: 'answer17' 
+    problem: 'The proper syntax to append a child to a parent is?',
+    ans1: 'parentElement.appendChild(childElement);',
+    ans2: 'childElement.appendChild(parentElement)',
+    ans3: 'childElement + parentElement;',
+    ans4: 'parentElement(childElement);',
+    correct: 'parentElement.appendChild(childElement);' 
 }];
 
 
-var timeEl = 30;
+var timeEl = 60;
 var score = 0;
 var currentIndex = 0;
 
 var init = function(){
-    begin.textContent = 'Click to Begin Code Quiz';
+    begin.textContent = 'Click to Begin JS Quiz';
     begin.addEventListener('click', startGame);
-    timer.textContent = 30;
+    timer.textContent = 60;
 };
 
 var startGame = function(){
@@ -74,6 +74,7 @@ var setTime = function(){
 
         if(timeEl === 0 || currentIndex === questionBank.length){
             clearInterval(timeInterval);
+            endScreen();
 
         }
         
@@ -166,13 +167,10 @@ var endScreen = function() {
     
     var inputText = document.createElement('h3');
     inputText.textContent = "Initials:";
-    submit.appendChild(inputText);
+    result.appendChild(inputText);
 
     var initialInput = document.createElement('input');
     result.appendChild(initialInput);
-    var scoreHeader = document.createElement('h3');
-    scoreHeader.textContent = 'HighScores';
-    result.appendChild(scoreHeader);
     var submitButton = document.createElement('button');
     submitButton.textContent = "Save Score";
     submit.appendChild(submitButton);
@@ -189,6 +187,10 @@ var endScreen = function() {
         mainDiv.innerHTML = '';
         result.innerHTML = '';
         submit.innerHTML = '';
+        var scoreHeader = document.createElement('h3');
+        scoreHeader.textContent = 'HighScores';
+        result.appendChild(scoreHeader);
+
         savedScores = JSON.parse(localStorage.getItem('savedScores'));
     var highScores = document.createElement('ul');
     
@@ -198,7 +200,7 @@ var endScreen = function() {
       highScores.appendChild(listItem);
     });
 
-    mainDiv.appendChild(highScores);
+    result.appendChild(highScores);
 
 clearScores();
 playAgain();
@@ -216,7 +218,7 @@ var clearScores = function() {
     
     clearButton.addEventListener('click', function() {
         localStorage.removeItem('savedScores');
-        mainDiv.innerHTML = '';
+        highScores.innerHTML = "";
       });
 }
 
@@ -265,7 +267,7 @@ var wrong = function(){
     incorrect.textContent = 'Wrong Answer';
     result.appendChild(incorrect);
     currentIndex++;
-    timeEl -= 5;
+    timeEl -= 4;
     if (currentIndex < questionBank.length){
         displayQuestion(); 
     } else {
