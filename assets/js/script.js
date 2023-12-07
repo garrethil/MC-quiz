@@ -9,7 +9,9 @@ const choice4 = document.querySelector('#opt4');
 const result = document.querySelector('#result');
 const timer = document.querySelector('#time');
 const submit = document.querySelector('#submit');
+const scoresButton = document.querySelector('#pastScores')
 
+var savedScores = [];
 
 let questionBank = [{
     problem: 'what couldquestion goes here ___1____',
@@ -73,7 +75,6 @@ var setTime = function(){
         if(timeEl === 0 || currentIndex === questionBank.length){
             clearInterval(timeInterval);
 
-            gameOver();
         }
         
     }, 1000);
@@ -158,43 +159,78 @@ var endScreen = function() {
     choice2.innerHTML = '';
     choice3.innerHTML = '';
     choice4.innerHTML = '';
-    result.innerHTML = '';
+    result.innerHTML = '';  
     var finalScore = document.createElement('h2');
     finalScore.textContent = 'Score: ' + score;
     mainDiv.appendChild(finalScore);
     
     var inputText = document.createElement('h3');
     inputText.textContent = "Initials:";
-    result.appendChild(inputText);
+    submit.appendChild(inputText);
 
     var initialInput = document.createElement('input');
     result.appendChild(initialInput);
-
-    var submitButtom = document.createElement('button');
-    submitButtom.textContent = "Save Score";
-    submit.appendChild(submitButtom);
-    submit.addEventListener('click', scoreBoard);
-}
-
-var scoreBoard = function () {
-    const user = initialInput.value;
-    const finalScore = score.value;
-    localStorage.setItem('user', user);
-    localStorage.setItem('score', finalScore);
-    result.innerHTML = '';
-    submit.innerHTML = '';
     var scoreHeader = document.createElement('h3');
     scoreHeader.textContent = 'HighScores';
     result.appendChild(scoreHeader);
-    var savedUser = localStorage.getItem('user');
-    var savedScore = localStorage.getItem('score');
+    var submitButton = document.createElement('button');
+    submitButton.textContent = "Save Score";
+    submit.appendChild(submitButton);
+
+    submit.addEventListener('click', function(event){
+        event.preventDefault();
+        var userScore = {
+            user: initialInput.value,
+            finalScore: score
+        };
+        var savedScores = JSON.parse(localStorage.getItem('savedScores')) || [];
+        savedScores.push(userScore);
+        localStorage.setItem('savedScores', JSON.stringify(savedScores));
+        mainDiv.innerHTML = '';
+        result.innerHTML = '';
+        submit.innerHTML = '';
+        savedScores = JSON.parse(localStorage.getItem('savedScores'));
+    var highScores = document.createElement('ul');
     
-    var highScores = document.createElement('p');
-    highScores.textContent = savedUser + ' ' + savedScore;
-    result.appendChild(highScores);
+    savedScores.forEach(function(score) {
+      var listItem = document.createElement('li');
+      listItem.textContent = score.user + ' - ' + score.finalScore;
+      highScores.appendChild(listItem);
+    });
+
+    mainDiv.appendChild(highScores);
+
+clearScores();
+playAgain();
+    });
 
 
+
+    
+};
+
+var clearScores = function() {
+    var clearButton = document.createElement('button');
+    clearButton.textContent = "Clear Scores";
+    result.appendChild(clearButton);
+    
+    clearButton.addEventListener('click', function() {
+        localStorage.removeItem('savedScores');
+        mainDiv.innerHTML = '';
+      });
 }
+
+var playAgain = function() {
+    var retryButton = document.createElement('button');
+    retryButton.textContent = "Play Again";
+    result.appendChild(retryButton);
+    
+    retryButton.addEventListener('click', function() {
+location.reload();
+      });
+}
+
+
 
 
 var correct = function(){
