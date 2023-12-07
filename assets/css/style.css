@@ -1,117 +1,115 @@
 @font-face {
-    font-family: main-font;
-    src: url(./slkscre.ttf);
+  font-family: main-font;
+  src: url(./slkscre.ttf);
 }
 
 :root {
-    --main-text: darkblue;
-    --background: lightblue;
-    --border: 3px solid darkblue;
+  --main-text: darkblue;
+  --background: lightblue;
+  --border: 3px solid darkblue;
 }
 
-*{
-    font-family: main-font;
+* {
+  font-family: main-font;
 }
 
 #top {
-    display: flex;
-    justify-content: center;
-    color: var(--main-text);
-    font-size: 34px;
-    padding: 20px;
-    margin: 15px 25px;
-    text-decoration: underline;
-
+  display: flex;
+  justify-content: center;
+  color: var(--main-text);
+  font-size: 34px;
+  padding: 20px;
+  margin: 15px 25px;
+  text-decoration: underline;
 }
 
 #clock {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px 40px;
-    border-bottom: var(--border);
-    width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 40px;
+  border-bottom: var(--border);
+  width: 70%;
 }
 
 #clock h1 {
-    font-size: 28px;
-    color: var(--main-text);
-    padding: 10px;
-    background-color: var(--background);
-    border-radius: 6px;
-    border: var(--border);
+  font-size: 28px;
+  color: var(--main-text);
+  padding: 10px;
+  background-color: var(--background);
+  border-radius: 6px;
+  border: var(--border);
 }
 
-
 main {
-    display: flex;
+  display: flex;
 
-    align-items: center;
-    flex-direction: column;
+  align-items: center;
+  flex-direction: column;
 }
 
 #mainCard button {
-    padding: 30px;
-    margin: 15px;
-    background-color: lightblue;
-    color: var(--main-text);
-    border: 2px solid var(--main-text);
-    border-radius: 6px;
-    font-size: 30px;
+  padding: 30px;
+  margin: 15px;
+  background-color: lightblue;
+  color: var(--main-text);
+  border: 2px solid var(--main-text);
+  border-radius: 6px;
+  font-size: 30px;
 }
 
 #mainCard button:hover {
-    cursor: grab;
-    color: var(--background);
-    background-color: var(--main-text);
-    border-color: var(--background);
+  cursor: grab;
+  color: var(--background);
+  background-color: var(--main-text);
+  border-color: var(--background);
 }
 
 #mainCard h1 {
-    font-size: 25px;
-    padding: 30px 20px;
+  font-size: 25px;
+  padding: 30px 20px;
 }
 
 #mainCard h2 {
-    font-size: 22px;
-    padding: 16px;
-    border: 4px ridge var(--header-text);
+  font-size: 22px;
+  padding: 16px;
+  border: 4px ridge var(--header-text);
 }
 
 .option button {
-    padding: 10px;
-    margin: 10px;
-    background-color: var(--background);
-    color: var(--main-text);
-    border: var(--border);
-    cursor: grab;
+  padding: 10px;
+  margin: 10px;
+  background-color: var(--background);
+  color: var(--main-text);
+  border: var(--border);
+  cursor: grab;
 }
 
 #mainCard {
-    display: flex;
+  display: flex;
 }
-
 
 #result input {
-    padding: 10px;
-    margin: 5px;
+  padding: 10px;
+  margin: 5px;
 }
-#result button, #submit button {
-    padding: 12px;
-    margin: 15px;
-    background-color: var(--background);
+#result button,
+#submit button {
+  padding: 12px;
+  margin: 15px;
+  background-color: var(--background);
 }
 
 #result h3 {
-    margin: 15px;
-    font-size: 20px;
+  margin: 15px;
+  font-size: 20px;
 }
 
 #result h2 {
-    margin: 15px;
-    padding: 10px;
-    border-top: var(--border);
+  margin: 15px;
+  padding: 10px;
+  border-top: var(--border);
 }
 
 #submit {
-    margin-top: 30px;
+  margin-top: 30px;
 }
